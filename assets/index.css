@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+@font-face {
+   font-family: intro;
+   src: url(intro.otf);
+}
+
+body {
+	background-color: #2a9fbc;
+    font-family: intro;
+}
+
+.container {
+    text-align: center
+}
+
+ul {
+    list-style-type: none;
+}
