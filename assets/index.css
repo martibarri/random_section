@@ -4,16 +4,24 @@
    font-family: intro;
    src: url(intro.otf);
 }
-
 body {
 	background-color: #2a9fbc;
     font-family: intro;
 }
-
-.container {
-    text-align: center
-}
-
 ul {
     list-style-type: none;
+}
+h1 {
+    font-size: 60px;
+}
+h2 {
+    font-size: 40px;
+}
+.container {
+    text-align: center;
+    color: #fcdf05;
+}
+.knife {
+    background-image: url(knife.gif);
+    background-size: cover;
 }
