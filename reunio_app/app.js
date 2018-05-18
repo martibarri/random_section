@@ -8,6 +8,8 @@ app.controller("myCtrl", function($scope) {
     $scope.knife = false;
     var data_gresca = new Date("2018-04-14T18:00:00.000Z"); 
     $scope.dies_restants = parseInt((data_gresca - $scope.date) / 1000 / 60 / 60 / 24);
+	$scope.gresca_passada = (data_gresca - $scope.date);
+	console.log(($scope.gresca_passada / 1000 / 60 / 60 / 24) < 0);
 	$scope.opcions_actual = {
         accept: function() {
             return !($scope.actual.length >= 1);
