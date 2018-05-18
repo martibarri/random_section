@@ -12,7 +12,6 @@
     <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/angular-dragdrop/src/angular-dragdrop.min.js"></script>
-    <script src="assets/angular-drag-to-reorder.min.js"></script>
     <script src="app.js"></script>
 </head>
 
@@ -22,30 +21,45 @@
             <h1>Reunió Totgresca {{date | date:'dd-MM-yyyy'}}</h1>
             <h3>Falten {{ dies_restants }} dies</h3>
         </div>
-        <div class="col-md-12 col-xs-12" style="margin-bottom: 30px">
-            <button ng-click="random()" type="button" class="btn btn-info btn-md">Randomize</button>
+		<div class="col-md-12 col-xs-12" style="margin-bottom: 30px">			
             <button ng-click="restart()" type="button" class="btn btn-danger btn-md">Restart</button>
         </div>
-        <div class="container">
+        <div class="col-md-12 col-xs-12">
             <div class="row">
+				<div class="col-md-4 col-xs-4">
+					<div class="box" data-drop="true" ng-model='seccions1' jqyoui-droppable="{multiple:true}">
+						<div ng-repeat="seccio in seccions1" data-drag="true" data-jqyoui-options="{revert: 'invalid'}"
+						 ng-model="seccions1" jqyoui-draggable="{index: {{$index}}}">
+							{{seccio}}
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 col-xs-4">
+					<button ng-click="in()" type="button" class="btn btn-primary btn-lg">
+						<span class="glyphicon glyphicon-backward"></span>
+					</button>
+					<button ng-click="next()" type="button" class="btn btn-info btn-lg">
+						<span class="glyphicon glyphicon-random"></span>
+					</button>
+					<button ng-click="out()" type="button" class="btn btn-primary btn-lg">
+						<span class="glyphicon glyphicon-forward"></span>
+					</button>
+					<div class="box" data-drop="true" ng-model='actual' jqyoui-droppable="{multiple:true}" 
+					 data-jqyoui-options="opcions_actual">
+						<div ng-repeat="a in actual" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" 
+						 ng-model="actual" jqyoui-draggable="{index: {{$index}}}">
+							<span class="glyphicon glyphicon-bullhorn"></span>
+							<h2>{{a}}</h2>
+						</div>
+					</div>
+				</div>
                 <div class="col-md-4 col-xs-4">
-                    <ul>
-                        <li ng-repeat="seccio in seccions1" drag-to-reorder="seccions1">
-                            {{seccio}}
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-4 col-xs-4">
-                    <button ng-click="next()" type="button" class="btn btn-primary btn-lg">Next</button>
-                    <h2>{{actual}}</h2>
-                </div>
-                <div class="col-md-4 col-xs-4">
-                    <ul>
-                        <li ng-repeat="seccio in seccions2">
-                            <strike>{{seccio}}</strike>
-                        </li>
-                    </ul>
-                </div>
+					<div class="box" data-drop="true" ng-model='seccions2' jqyoui-droppable="{multiple:true}">
+						<div ng-repeat="seccio in seccions2" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="seccions2" jqyoui-draggable="{index: {{$index}}}">
+							<strike>{{seccio}}</strike>
+						</div>
+					</div>
+				</div>
             </div>
         </div>
     </div>
