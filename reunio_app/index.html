@@ -4,62 +4,60 @@
     <meta charset="UTF-8">
     <title>[Totgresca]</title>
     <!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="assets/index.css">
-	<!-- JS -->
+    <!-- JS -->
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/angular-dragdrop/src/angular-dragdrop.min.js"></script>
-    <script src="app.js"></script>
+    <script src="randomApp.module.js"></script>
+    <script src="mainController.js"></script>
 </head>
 
-<body ng-controller="myCtrl" ng-keypress="keydown($event)" ng-class="{'knife': knife}" ng-init="random()">
+<body ng-controller="mainController as mainCtrl" ng-keypress="mainCtrl.keydown($event)" ng-class="{ 'knife': mainCtrl.knife }" ng-init="mainCtrl.random()">
     <div class="container-flex">
         <div class="col-md-12 col-xs-12">
-            <h1>Reunió Totgresca {{date | date:'dd-MM-yyyy'}}</h1>
-            <h3 ng-hide="gresca_passada">Falten {{ dies_restants }} dies</h3>
+            <h1>Reunió Totgresca {{ mainCtrl.date | date:'dd-MM-yyyy' }}</h1>
+            <h3 ng-hide="mainCtrl.gresca_passada">Falten {{ mainCtrl.dies_restants }} dies</h3>
         </div>
-		<div class="col-md-12 col-xs-12" style="margin-bottom: 30px">			
-            <button ng-click="restart()" type="button" class="btn btn-danger btn-md">Restart</button>
+        <div class="col-md-12 col-xs-12" style="margin-bottom: 30px">			
+            <button ng-click="mainCtrl.restart()" type="button" class="btn btn-danger btn-md">Restart</button>
         </div>
         <div class="col-md-12 col-xs-12">
             <div class="row">
-				<div class="col-md-3 col-xs-3">
-					<div class="box" data-drop="true" ng-model='seccions1' jqyoui-droppable="{multiple:true}">
-						<div ng-repeat="seccio in seccions1" data-drag="true" data-jqyoui-options="{revert: 'invalid'}"
-						 ng-model="seccions1" jqyoui-draggable="{index: {{$index}}}">
-							{{seccio}}
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-xs-6">
-					<button ng-click="in()" type="button" class="btn btn-primary btn-lg">
-						<span class="glyphicon glyphicon-backward"></span>
-					</button>
-					<button ng-click="next()" type="button" class="btn btn-info btn-lg">
-						<span class="glyphicon glyphicon-random"></span>
-					</button>
-					<button ng-click="out()" type="button" class="btn btn-primary btn-lg">
-						<span class="glyphicon glyphicon-forward"></span>
-					</button>
-					<div class="box" data-drop="true" ng-model='actual' jqyoui-droppable="{multiple:true}" 
-					 data-jqyoui-options="opcions_actual">
-						<div ng-repeat="a in actual" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" 
-						 ng-model="actual" jqyoui-draggable="{index: {{$index}}}">
-							<span class="glyphicon glyphicon-bullhorn"></span>
-							<h2>{{a}}</h2>
-						</div>
-					</div>
-				</div>
                 <div class="col-md-3 col-xs-3">
-					<div class="box" data-drop="true" ng-model='seccions2' jqyoui-droppable="{multiple:true}">
-						<div ng-repeat="seccio in seccions2" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="seccions2" jqyoui-draggable="{index: {{$index}}}">
-							<strike>{{seccio}}</strike>
-						</div>
-					</div>
-				</div>
+                    <div class="box" data-drop="true" ng-model='mainCtrl.seccions1' jqyoui-droppable="{ multiple:true }">
+                        <div ng-repeat="seccio in mainCtrl.seccions1" data-drag="true" data-jqyoui-options="{ revert: 'invalid' }" ng-model="mainCtrl.seccions1" jqyoui-draggable="{ index: {{$index}} }">
+                            {{ seccio }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-6">
+                    <button ng-click="mainCtrl.in()" type="button" class="btn btn-primary btn-lg">
+                        <span class="glyphicon glyphicon-backward"></span>
+                    </button>
+                    <button ng-click="mainCtrl.next()" type="button" class="btn btn-info btn-lg">
+                        <span class="glyphicon glyphicon-random"></span>
+                    </button>
+                    <button ng-click="mainCtrl.out()" type="button" class="btn btn-primary btn-lg">
+                        <span class="glyphicon glyphicon-forward"></span>
+                    </button>
+                    <div class="box" data-drop="true" ng-model='mainCtrl.actual' jqyoui-droppable="{ multiple:true }" data-jqyoui-options="mainCtrl.opcions_actual">
+                        <div ng-repeat="actual in mainCtrl.actual" data-drag="true" data-jqyoui-options="{ revert: 'invalid' }" ng-model="mainCtrl.actual" jqyoui-draggable="{ index: {{ $index }} }">
+                            <span class="glyphicon glyphicon-bullhorn"></span>
+                            <h2>{{ actual }}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-3">
+                    <div class="box" data-drop="true" ng-model='mainCtrl.seccions2' jqyoui-droppable="{ multiple:true }">
+                        <div ng-repeat="seccio in mainCtrl.seccions2" data-drag="true" data-jqyoui-options="{ revert: 'invalid' }" ng-model="mainCtrl.seccions2" jqyoui-draggable="{ index: {{ $index }} }">
+                            <strike>{{ seccio }}</strike>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
