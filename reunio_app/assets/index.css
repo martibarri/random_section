@@ -8,7 +8,7 @@ html {
 	height: 100%;
 }
 body {
-	background-color: #2a9fbc;
+	background-color: #067c7f;
     font-family: intro;
 	height: 100%;
 }
@@ -21,16 +21,18 @@ h1 {
 h2 {
     font-size: 40px;
 }
-.container {
+.container-flex {
     text-align: center;
-    color: #fcdf05;
+    color: #fcc723;
+	margin-left: 30px;
+	margin-right: 30px;
 }
 .knife {
     background-image: url(knife.gif);
     background-size: cover;
 }
 .box {
-	border: 1px solid #fcdf05;
+	border: 1px solid #fcc723;
 	border-radius: 50px;
 	margin: 15px 0 15px 0;
 	width: 100%;
