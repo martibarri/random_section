@@ -16,14 +16,22 @@
     <script src="mainController.js"></script>
 </head>
 
-<body ng-controller="mainController as mainCtrl" ng-keypress="mainCtrl.keydown($event)" ng-class="{ 'knife': mainCtrl.knife }" ng-init="mainCtrl.random()">
+<body ng-controller="mainController as mainCtrl" ng-keypress="mainCtrl.keydown($event)" ng-class="{ 'knife': mainCtrl.knife }" ng-init="mainCtrl.random('random')">
     <div class="container-flex">
         <div class="col-md-12 col-xs-12">
             <h1>Reunió Totgresca {{ mainCtrl.date | date:'dd-MM-yyyy' }}</h1>
             <h3 ng-hide="mainCtrl.gresca_passada">Falten {{ mainCtrl.dies_restants }} dies</h3>
         </div>
-        <div class="col-md-12 col-xs-12" style="margin-bottom: 30px">			
-            <button ng-click="mainCtrl.restart()" type="button" class="btn btn-danger btn-md">Restart</button>
+        <div class="col-md-12 col-xs-12">
+            <button ng-show="mainCtrl.stat=='random'" ng-click="mainCtrl.random('next')" type="button" class="btn btn-info btn-lg">
+                <span class="glyphicon glyphicon-question-sign"></span>
+            </button>
+            <button ng-show="mainCtrl.stat=='next'" ng-click="mainCtrl.next('out')" type="button" class="btn btn-success btn-lg">
+                <span class="glyphicon glyphicon-log-in"></span>
+            </button>
+            <button ng-show="mainCtrl.stat=='out'" ng-click="mainCtrl.out('random')" type="button" class="btn btn-danger btn-lg">
+                <span class="glyphicon glyphicon-log-out"></span>
+            </button>
         </div>
         <div class="col-md-12 col-xs-12">
             <div class="row">
@@ -35,15 +43,6 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-xs-6">
-                    <button ng-click="mainCtrl.in()" type="button" class="btn btn-primary btn-lg">
-                        <span class="glyphicon glyphicon-backward"></span>
-                    </button>
-                    <button ng-click="mainCtrl.next()" type="button" class="btn btn-info btn-lg">
-                        <span class="glyphicon glyphicon-random"></span>
-                    </button>
-                    <button ng-click="mainCtrl.out()" type="button" class="btn btn-primary btn-lg">
-                        <span class="glyphicon glyphicon-forward"></span>
-                    </button>
                     <div class="box" data-drop="true" ng-model='mainCtrl.actual' jqyoui-droppable="{ multiple:true }" data-jqyoui-options="mainCtrl.opcions_actual">
                         <div ng-repeat="actual in mainCtrl.actual" data-drag="true" data-jqyoui-options="{ revert: 'invalid' }" ng-model="mainCtrl.actual" jqyoui-draggable="{ index: {{ $index }} }">
                             <span class="glyphicon glyphicon-bullhorn"></span>
